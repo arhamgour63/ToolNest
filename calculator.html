@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest Calculator</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f8fafc;
+text-align:center;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#9333ea);
+color:white;
+padding:25px;
+}
+
+.box{
+background:white;
+max-width:400px;
+margin:40px auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px #ddd;
+}
+
+input{
+width:90%;
+padding:15px;
+font-size:20px;
+margin-bottom:15px;
+}
+
+button{
+width:60px;
+height:45px;
+margin:5px;
+border:0;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🧮 ToolNest Calculator</h1>
+</header>
+
+
+<div class="box">
+
+<input id="display" readonly>
+
+
+<br>
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button onclick="add('/')">÷</button>
+
+<br>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button onclick="add('*')">×</button>
+
+<br>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button onclick="add('-')">-</button>
+
+<br>
+
+<button onclick="add('0')">0</button>
+<button onclick="clearDisplay()">C</button>
+<button onclick="calculate()">=</button>
+<button onclick="add('+')">+</button>
+
+
+</div>
+
+
+<script>
+
+function add(value){
+
+document.getElementById("display").value += value;
+
+}
+
+
+function clearDisplay(){
+
+document.getElementById("display").value="";
+
+}
+
+
+function calculate(){
+
+let result=eval(
+document.getElementById("display").value
+);
+
+document.getElementById("display").value=result;
+
+}
+
+</script>
+
+
+</body>
+</html>
