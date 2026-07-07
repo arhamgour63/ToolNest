@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>ToolNest PDF Merger</title>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
 
 <style>
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f4f7fb;
+margin:0;
 text-align:center;
 }
 
@@ -32,8 +38,12 @@ color:white;
 border:none;
 border-radius:8px;
 margin-top:15px;
+cursor:pointer;
 }
 
+#download{
+display:none;
+}
 </style>
 
 </head>
@@ -44,35 +54,74 @@ margin-top:15px;
 <h1>ToolNest PDF Merger</h1>
 </header>
 
+
 <div class="box">
 
 <h2>Select PDF Files</h2>
 
-<input type="file" id="pdf" multiple accept="application/pdf">
+<input type="file" id="pdfFiles" multiple accept="application/pdf">
 
 <br>
 
 <button onclick="mergePDF()">Merge PDF</button>
 
-<p id="result"></p>
+<p id="status"></p>
+
+<a id="download">
+<button>Download Merged PDF</button>
+</a>
 
 </div>
 
 
 <script>
 
-function mergePDF(){
+async function mergePDF(){
 
-let files=document.getElementById("pdf").files;
+let files=document.getElementById("pdfFiles").files;
 
 if(files.length<2){
-document.getElementById("result").innerHTML=
-"Select at least 2 PDF files";
+document.getElementById("status").innerHTML="Select at least 2 PDF files";
 return;
 }
 
-document.getElementById("result").innerHTML=
-files.length+" PDF files selected. PDF merger setup ready.";
+let mergedPdf=await PDFLib.PDFDocument.create();
+
+for(let file of files){
+
+let bytes=await file.arrayBuffer();
+
+let pdf=await PDFLib.PDFDocument.load(bytes);
+
+let pages=await mergedPdf.copyPages(
+pdf,
+pdf.getPageIndices()
+);
+
+pages.forEach(page=>{
+mergedPdf.addPage(page);
+});
+
+}
+
+
+let mergedBytes=await mergedPdf.save();
+
+let blob=new Blob(
+[mergedBytes],
+{type:"application/pdf"}
+);
+
+let url=URL.createObjectURL(blob);
+
+let download=document.getElementById("download");
+
+download.href=url;
+download.download="merged.pdf";
+download.style.display="inline-block";
+
+document.getElementById("status").innerHTML=
+"PDF merged successfully!";
 
 }
 
