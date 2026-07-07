@@ -8,7 +8,7 @@
 
 <style>
 body{
-font-family:Arial;
+font-family:Arial,sans-serif;
 background:#f4f7fb;
 margin:0;
 }
@@ -16,8 +16,8 @@ margin:0;
 header{
 background:#2563eb;
 color:white;
-text-align:center;
 padding:20px;
+text-align:center;
 }
 
 .box{
@@ -30,21 +30,18 @@ text-align:center;
 box-shadow:0 5px 15px #ddd;
 }
 
-input{
-margin:20px;
-}
-
-img{
-max-width:100%;
-margin-top:20px;
-}
-
 button{
 padding:12px 25px;
 background:#2563eb;
 color:white;
 border:none;
 border-radius:8px;
+cursor:pointer;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
 }
 </style>
 
@@ -58,55 +55,58 @@ border-radius:8px;
 
 <div class="box">
 
-<h2>Compress Image</h2>
+<h2>Select Image</h2>
 
-<input type="file" id="image" accept="image/*">
+<input type="file" id="file" accept="image/*">
+
+<br><br>
+
+<button onclick="compress()">Compress Image</button>
 
 <br>
 
-<button onclick="compressImage()">Compress</button>
-
-<br>
-
-<img id="output">
+<img id="preview">
 
 </div>
 
 
 <script>
 
-function compressImage(){
+function compress(){
 
-let file=document.getElementById("image").files[0];
+let file=document.getElementById("file").files[0];
 
 if(!file){
-alert("Select an image first");
+alert("Please select an image");
 return;
 }
-
-let img=new Image();
 
 let reader=new FileReader();
 
 reader.onload=function(e){
 
-img.src=e.target.result;
+let img=new Image();
 
 img.onload=function(){
 
 let canvas=document.createElement("canvas");
 
+let width=800;
+let height=img.height*(width/img.width);
+
+canvas.width=width;
+canvas.height=height;
+
 let ctx=canvas.getContext("2d");
 
-canvas.width=500;
-canvas.height=(img.height/img.width)*500;
+ctx.drawImage(img,0,0,width,height);
 
-ctx.drawImage(img,0,0,canvas.width,canvas.height);
-
-document.getElementById("output").src=
+document.getElementById("preview").src =
 canvas.toDataURL("image/jpeg",0.5);
 
 }
+
+img.src=e.target.result;
 
 }
 
