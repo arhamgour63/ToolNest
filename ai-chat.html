@@ -1,59 +1,57 @@
-```html
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ToolNest AI Chat</title>
 
 <style>
+
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f4f7fb;
+font-family:Arial;
+background:#f8fafc;
+text-align:center;
 }
 
 header{
-    background:#2563eb;
-    color:white;
-    padding:20px;
-    text-align:center;
+background:linear-gradient(135deg,#2563eb,#9333ea);
+color:white;
+padding:25px;
 }
 
 .box{
-    max-width:700px;
-    margin:40px auto;
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
+max-width:500px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px #ddd;
 }
 
-textarea{
-    width:100%;
-    height:120px;
-    padding:12px;
-    border-radius:8px;
-    border:1px solid #ccc;
-    font-size:16px;
+#chat{
+height:250px;
+overflow:auto;
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+border-radius:10px;
+}
+
+input{
+width:70%;
+padding:12px;
 }
 
 button{
-    margin-top:15px;
-    padding:12px 25px;
-    background:#2563eb;
-    color:white;
-    border:none;
-    border-radius:8px;
+padding:12px 20px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:20px;
 }
 
-#response{
-    margin-top:20px;
-    background:#f1f5f9;
-    padding:15px;
-    border-radius:8px;
-}
 </style>
 
 </head>
@@ -61,66 +59,40 @@ button{
 <body>
 
 <header>
-<h1>ToolNest AI Chat</h1>
-<p>Ask anything</p>
+<h1>🤖 ToolNest AI Chat</h1>
 </header>
 
 
 <div class="box">
 
-<h2>Chat with AI</h2>
-
-<textarea id="message" placeholder="Type your question..."></textarea>
-
-<button onclick="sendMessage()">Send</button>
-
-<div id="response">
-AI response will appear here...
+<div id="chat">
+<p><b>AI:</b> Hello! Ask me anything.</p>
 </div>
+
+<br>
+
+<input id="msg" placeholder="Type your message">
+
+<button onclick="send()">Send</button>
 
 </div>
 
 
 <script>
 
-async function sendMessage(){
+function send(){
 
-let msg = document.getElementById("message").value;
+let msg=document.getElementById("msg").value;
 
-if(msg==""){
-document.getElementById("response").innerHTML="Please type something.";
-return;
-}
+let chat=document.getElementById("chat");
 
-document.getElementById("response").innerHTML="Connecting to AI...";
+chat.innerHTML += "<p><b>You:</b> "+msg+"</p>";
 
+let reply="I am ToolNest AI demo. Your question is: "+msg;
 
-try{
+chat.innerHTML += "<p><b>AI:</b> "+reply+"</p>";
 
-let response = await fetch("/api/chat",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({
-message:msg
-})
-});
-
-
-let data = await response.json();
-
-document.getElementById("response").innerHTML=data.reply;
-
-
-}
-
-catch(error){
-
-document.getElementById("response").innerHTML=
-"Error connecting AI.";
-
-}
+document.getElementById("msg").value="";
 
 }
 
@@ -129,4 +101,3 @@ document.getElementById("response").innerHTML=
 
 </body>
 </html>
-```
