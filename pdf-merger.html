@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ToolNest PDF Merger</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f7fb;
+text-align:center;
+}
+
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+}
+
+.box{
+background:white;
+max-width:500px;
+margin:40px auto;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px #ddd;
+}
+
+button{
+padding:12px 25px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+margin-top:15px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>ToolNest PDF Merger</h1>
+</header>
+
+<div class="box">
+
+<h2>Select PDF Files</h2>
+
+<input type="file" id="pdf" multiple accept="application/pdf">
+
+<br>
+
+<button onclick="mergePDF()">Merge PDF</button>
+
+<p id="result"></p>
+
+</div>
+
+
+<script>
+
+function mergePDF(){
+
+let files=document.getElementById("pdf").files;
+
+if(files.length<2){
+document.getElementById("result").innerHTML=
+"Select at least 2 PDF files";
+return;
+}
+
+document.getElementById("result").innerHTML=
+files.length+" PDF files selected. PDF merger setup ready.";
+
+}
+
+</script>
+
+</body>
+</html>
