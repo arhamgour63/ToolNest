@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest Text Counter</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f8fafc;
+text-align:center;
+margin:0;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#9333ea);
+color:white;
+padding:25px;
+}
+
+.box{
+background:white;
+max-width:500px;
+margin:40px auto;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+
+textarea{
+width:90%;
+height:150px;
+padding:15px;
+border-radius:10px;
+border:1px solid #ccc;
+}
+
+.result{
+margin-top:20px;
+font-size:18px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>📝 ToolNest Text Counter</h1>
+<p>Count words and characters instantly</p>
+</header>
+
+
+<div class="box">
+
+<textarea id="text" placeholder="Type or paste your text..." oninput="countText()"></textarea>
+
+
+<div class="result">
+
+<p>Words: <span id="words">0</span></p>
+
+<p>Characters: <span id="chars">0</span></p>
+
+</div>
+
+</div>
+
+
+<script>
+
+function countText(){
+
+let text=document.getElementById("text").value;
+
+let words=text.trim()=="" ? 0 : text.trim().split(/\s+/).length;
+
+let chars=text.length;
+
+
+document.getElementById("words").innerHTML=words;
+
+document.getElementById("chars").innerHTML=chars;
+
+}
+
+</script>
+
+
+</body>
+</html>
