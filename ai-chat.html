@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest AI Chat</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f7fb;
+}
+
+header{
+    background:#2563eb;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+
+.chat-box{
+    max-width:700px;
+    margin:40px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
+
+textarea{
+    width:100%;
+    height:120px;
+    padding:12px;
+    font-size:16px;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border:none;
+    border-radius:8px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+}
+
+#response{
+    margin-top:20px;
+    padding:15px;
+    background:#f1f5f9;
+    border-radius:8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>ToolNest AI Chat</h1>
+<p>Ask anything</p>
+</header>
+
+<div class="chat-box">
+
+<h2>Chat with AI</h2>
+
+<textarea id="message" placeholder="Type your question..."></textarea>
+
+<button onclick="sendMessage()">Send</button>
+
+<div id="response">
+AI response will appear here...
+</div>
+
+</div>
+
+<script>
+async function sendMessage(){
+
+let msg=document.getElementById("message").value;
+
+if(msg===""){
+document.getElementById("response").innerHTML="Please type something.";
+return;
+}
+
+document.getElementById("response").innerHTML=
+"Connecting to AI...";
+
+
+// Real AI API connection will be added here safely
+
+}
+</script>
+
+</body>
+</html>
