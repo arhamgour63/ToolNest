@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -130,7 +131,9 @@ padding:20px;
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -147,15 +150,17 @@ padding:20px;
 </header>
 
 
+
 <section class="hero">
 
 <h1>100+ Free Online Tools</h1>
 
 <p>AI, PDF, Image, Security and Productivity Tools</p>
 
-<input class="search" placeholder="Search your tool...">
+<input class="search" id="searchBox" placeholder="Search your tool...">
 
 </section>
+
 
 
 <section class="section">
@@ -234,9 +239,46 @@ padding:20px;
 </section>
 
 
+
 <footer>
 © 2026 ToolNest - All Rights Reserved
 </footer>
+
+
+
+<script>
+
+let searchBox=document.getElementById("searchBox");
+
+searchBox.addEventListener("keyup",function(){
+
+let value=searchBox.value.toLowerCase();
+
+let cards=document.querySelectorAll(".card");
+
+
+cards.forEach(function(card){
+
+let text=card.innerText.toLowerCase();
+
+
+if(text.includes(value)){
+
+card.style.display="block";
+
+}
+else{
+
+card.style.display="none";
+
+}
+
+});
+
+});
+
+</script>
+
 
 </body>
 </html>
