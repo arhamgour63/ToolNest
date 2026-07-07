@@ -1,38 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ToolNest Image Compressor</title>
-
-<style>
-body{
-font-family:Arial,sans-serif;
-background:#f4f7fb;
-margin:0;
-}
-
-header{
-background:#2563eb;
-color:white;
-text-align:center;
-padding:20px;
-}
-
-.box{
-max-width:500px;
-background:white;
-margin:40px auto;
-padding:25px;
-border-radius:12px;
-text-align:center;
-box-shadow:0 5px 15px #ddd;
-}
-
-button{
-padding:12px 25px;
-margin-top:15px;
+margin:10px;
 background:#2563eb;
 color:white;
 border:none;
@@ -45,8 +11,8 @@ max-width:100%;
 margin-top:20px;
 }
 
-a{
-text-decoration:none;
+#download{
+display:none;
 }
 </style>
 
@@ -60,21 +26,21 @@ text-decoration:none;
 
 <div class="box">
 
-<h2>Compress Your Image</h2>
+<h2>Select Image</h2>
 
 <input type="file" id="file" accept="image/*">
 
 <br>
 
-<button onclick="compress()">Compress Image</button>
+<button onclick="compressImage()">Compress Image</button>
 
-<p id="info"></p>
+<p id="size"></p>
 
-<img id="preview">
+<img id="result">
 
 <br>
 
-<a id="download" style="display:none" download="compressed-image.jpg">
+<a id="download" download="compressed.jpg">
 <button>Download Image</button>
 </a>
 
@@ -83,18 +49,14 @@ text-decoration:none;
 
 <script>
 
-let compressedURL="";
-
-function compress(){
+function compressImage(){
 
 let file=document.getElementById("file").files[0];
 
 if(!file){
-alert("Please select an image");
+alert("Please select image");
 return;
 }
-
-let originalSize=(file.size/1024).toFixed(2);
 
 let reader=new FileReader();
 
@@ -106,38 +68,38 @@ img.onload=function(){
 
 let canvas=document.createElement("canvas");
 
-let width=800;
-let height=img.height*(width/img.width);
+let maxWidth=800;
 
-canvas.width=width;
-canvas.height=height;
+let ratio=maxWidth/img.width;
+
+canvas.width=maxWidth;
+canvas.height=img.height*ratio;
 
 let ctx=canvas.getContext("2d");
 
-ctx.drawImage(img,0,0,width,height);
+ctx.drawImage(img,0,0,canvas.width,canvas.height);
 
 
 canvas.toBlob(function(blob){
 
+let url=URL.createObjectURL(blob);
+
+document.getElementById("result").src=url;
+
+document.getElementById("download").href=url;
+
+document.getElementById("download").style.display="inline-block";
+
+
+let oldSize=(file.size/1024).toFixed(2);
 let newSize=(blob.size/1024).toFixed(2);
 
-compressedURL=URL.createObjectURL(blob);
-
-document.getElementById("preview").src=compressedURL;
-
-document.getElementById("info").innerHTML=
-"Original Size: "+originalSize+" KB<br>"+
-"Compressed Size: "+newSize+" KB";
-
-
-let btn=document.getElementById("download");
-
-btn.href=compressedURL;
-btn.style.display="inline-block";
+document.getElementById("size").innerHTML=
+"Original: "+oldSize+" KB<br>"+
+"Compressed: "+newSize+" KB";
 
 
 },"image/jpeg",0.5);
-
 
 }
 
