@@ -144,7 +144,7 @@ padding:20px;
 <nav>
 <a href="#">Home</a>
 <a href="#">Tools</a>
-<a href="#">About</a>
+<a href="about.html">About</a>
 </nav>
 
 </header>
@@ -256,21 +256,15 @@ let value=searchBox.value.toLowerCase();
 
 let cards=document.querySelectorAll(".card");
 
-
 cards.forEach(function(card){
 
 let text=card.innerText.toLowerCase();
 
-
 if(text.includes(value)){
-
 card.style.display="block";
-
 }
 else{
-
 card.style.display="none";
-
 }
 
 });
