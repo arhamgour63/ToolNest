@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest QR Generator</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f7fb;
+margin:0;
+}
+
+header{
+background:#2563eb;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+background:white;
+margin:40px auto;
+padding:25px;
+border-radius:12px;
+box-shadow:0 5px 15px #ddd;
+text-align:center;
+}
+
+input{
+width:90%;
+padding:12px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button{
+margin-top:15px;
+padding:12px 25px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:8px;
+}
+
+img{
+margin-top:20px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>ToolNest QR Generator</h1>
+</header>
+
+<div class="box">
+
+<h2>Create QR Code</h2>
+
+<input id="text" placeholder="Enter text or link">
+
+<br>
+
+<button onclick="generateQR()">Generate</button>
+
+<br>
+
+<img id="qr">
+
+</div>
+
+
+<script>
+
+function generateQR(){
+
+let text=document.getElementById("text").value;
+
+document.getElementById("qr").src =
+"https://api.qrserver.com/v1/create-qr-code/?size=200x200&data="
++encodeURIComponent(text);
+
+}
+
+</script>
+
+</body>
+</html>
