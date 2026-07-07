@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest Image Compressor</title>
+
+<style>
+body{
+font-family:Arial;
+background:#f4f7fb;
+margin:0;
+}
+
+header{
+background:#2563eb;
+color:white;
+text-align:center;
+padding:20px;
+}
+
+.box{
+max-width:500px;
+background:white;
+margin:40px auto;
+padding:25px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 5px 15px #ddd;
+}
+
+input{
+margin:20px;
+}
+
+img{
+max-width:100%;
+margin-top:20px;
+}
+
+button{
+padding:12px 25px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>ToolNest Image Compressor</h1>
+</header>
+
+<div class="box">
+
+<h2>Compress Image</h2>
+
+<input type="file" id="image" accept="image/*">
+
+<br>
+
+<button onclick="compressImage()">Compress</button>
+
+<br>
+
+<img id="output">
+
+</div>
+
+
+<script>
+
+function compressImage(){
+
+let file=document.getElementById("image").files[0];
+
+if(!file){
+alert("Select an image first");
+return;
+}
+
+let img=new Image();
+
+let reader=new FileReader();
+
+reader.onload=function(e){
+
+img.src=e.target.result;
+
+img.onload=function(){
+
+let canvas=document.createElement("canvas");
+
+let ctx=canvas.getContext("2d");
+
+canvas.width=500;
+canvas.height=(img.height/img.width)*500;
+
+ctx.drawImage(img,0,0,canvas.width,canvas.height);
+
+document.getElementById("output").src=
+canvas.toDataURL("image/jpeg",0.5);
+
+}
+
+}
+
+reader.readAsDataURL(file);
+
+}
+
+</script>
+
+</body>
+</html>
