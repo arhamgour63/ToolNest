@@ -1,41 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>ToolNest - AI Tools Dashboard</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
-body{
-background:#f4f7fb;
-color:#222;
-}
-
-header{
-background:#2563eb;
-color:white;
-padding:20px 8%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
-
-header h1{
-font-size:30px;
-}
-
-nav a{
-color:white;
-margin-left:20px;
 text-decoration:none;
+margin-left:20px;
 }
 
 .hero{
@@ -46,7 +10,7 @@ color:white;
 }
 
 .hero h2{
-font-size:42px;
+font-size:40px;
 margin-bottom:15px;
 }
 
@@ -63,11 +27,11 @@ border:none;
 border-radius:10px;
 }
 
-.dashboard{
+.tools{
 padding:50px 8%;
 }
 
-.dashboard h2{
+.tools h2{
 text-align:center;
 margin-bottom:30px;
 }
@@ -96,9 +60,9 @@ color:#666;
 button{
 margin-top:15px;
 padding:10px 20px;
-border:0;
 background:#2563eb;
 color:white;
+border:none;
 border-radius:8px;
 cursor:pointer;
 }
@@ -110,15 +74,17 @@ text-decoration:none;
 footer{
 background:#111827;
 color:white;
-padding:20px;
 text-align:center;
+padding:20px;
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header>
 
@@ -133,6 +99,7 @@ text-align:center;
 </header>
 
 
+
 <section class="hero">
 
 <h2>100+ Free Online Tools</h2>
@@ -144,7 +111,8 @@ text-align:center;
 </section>
 
 
-<section class="dashboard">
+
+<section class="tools">
 
 <h2>Popular Tools</h2>
 
@@ -152,39 +120,16 @@ text-align:center;
 <div class="grid">
 
 
+
 <div class="card">
 <h3>🤖 AI Chat</h3>
-<p>Ask anything and get AI answers.</p>
-<a href="ai-chat.html"><button>Open</button></a>
-</div>
-
-
-<div class="card">
-<h3>📄 PDF Merger</h3>
-<p>Merge PDF files easily.</p>
-<a href="pdf-merger.html"><button>Open</button></a>
-</div>
-
-
-<div class="card">
-<h3>🖼 Image Compressor</h3>
-<p>Reduce image size online.</p>
-<a href="image-compressor.html"><button>Open</button></a>
-</div>
-
-
-<div class="card">
-<h3>🔳 QR Generator</h3>
-<p>Create QR codes instantly.</p>
-<a href="qr-generator.html"><button>Open</button></a>
-</div>
-
-
-<div class="card">
-<h3>🔐 Password Generator</h3>
-<p>Create strong passwords.</p>
+<p>Ask questions and get AI answers.</p>
+<a href="ai-chat.html">
+<a href="password-generator.html">
 <button>Open</button>
+</a>
 </div>
+
 
 
 <div class="card">
@@ -194,18 +139,21 @@ text-align:center;
 </div>
 
 
+
 <div class="card">
-<h3>📅 Notes Tool</h3>
-<p>Create quick notes online.</p>
+<h3>📒 Notes Tool</h3>
+<p>Create notes online.</p>
 <button>Open</button>
 </div>
+
 
 
 <div class="card">
 <h3>⚡ More Tools</h3>
-<p>100+ tools coming soon.</p>
+<p>More tools coming soon.</p>
 <button>Open</button>
 </div>
+
 
 
 </div>
@@ -213,8 +161,11 @@ text-align:center;
 </section>
 
 
+
 <footer>
+
 © 2026 ToolNest. All Rights Reserved.
+
 </footer>
 
 
