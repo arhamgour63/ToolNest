@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ToolNest AI Chat</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#f8fafc;
+text-align:center;
+}
+
+header{
+background:linear-gradient(135deg,#2563eb,#9333ea);
+color:white;
+padding:25px;
+}
+
+.box{
+max-width:500px;
+margin:40px auto;
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 20px #ddd;
+}
+
+#chat{
+height:250px;
+overflow:auto;
+border:1px solid #ddd;
+padding:10px;
+text-align:left;
+border-radius:10px;
+}
+
+input{
+width:70%;
+padding:12px;
+}
+
+button{
+padding:12px 20px;
+background:#2563eb;
+color:white;
+border:0;
+border-radius:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🤖 ToolNest AI Chat</h1>
+</header>
+
+
+<div class="box">
+
+<div id="chat">
+<p><b>AI:</b> Hello! Ask me anything.</p>
+</div>
+
+<br>
+
+<input id="msg" placeholder="Type your message">
+
+<button onclick="send()">Send</button>
+
+</div>
+
+
+<script>
+
+function send(){
+
+let msg=document.getElementById("msg").value;
+
+let chat=document.getElementById("chat");
+
+chat.innerHTML += "<p><b>You:</b> "+msg+"</p>";
+
+let reply="I am ToolNest AI demo. Your question is: "+msg;
+
+chat.innerHTML += "<p><b>AI:</b> "+reply+"</p>";
+
+document.getElementById("msg").value="";
+
+}
+
+</script>
+
+
+</body>
+</html>
